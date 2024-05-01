@@ -1,5 +1,5 @@
 
-const options = {
+const tmdbOptions = {
     method: 'GET',
     headers: {
         accept: 'application/json',
@@ -7,11 +7,19 @@ const options = {
     }
   };
 
+  const owenWilsonOptions = {
+    method: 'GET', 
+    headers: {
+        accept: 'application/json'
+    }
+};
+
+
 function getBaseURL(){
 
     const apiUrl = `https://api.themoviedb.org/3/configuration`;
 
-    fetch(apiUrl, options)
+    fetch(apiUrl, tmdbOptions)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
@@ -30,7 +38,7 @@ function getGenresList(){
 
     const apiUrl = `https://api.themoviedb.org/3/genre/movie/list`;
 
-    fetch(apiUrl, options)
+    fetch(apiUrl, tmdbOptions)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
@@ -44,6 +52,36 @@ function getGenresList(){
       alert('Unable to connect TMDB');
     });
 }
+
+var audioContainer = document.querySelector('#wow-container')
+function getRandomWow(){
+
+    const apiUrl = `https://owen-wilson-wow-api.onrender.com/wows/random`;
+
+    fetch(apiUrl, owenWilsonOptions)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data[0].audio);
+          audioContainer.src = `${data[0].audio}`;
+
+        });
+      } else {
+        alert(`Error:${response.statusText}`);
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to connect TMDB');
+    });
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    //código a ejecutar cuando existe la certeza de que el DOM está listo para recibir acciones
+    getRandomWow();
+    // audioContainer.play();
+});
 
 
 function generateYoutubeVideo(){
@@ -76,10 +114,13 @@ function generateYoutubeVideo(){
 
 }
 
+const buttonTest = document.querySelector('#test-button');
+buttonTest.addEventListener('click', function(){
+    audioContainer.play();
+});
 
-
-generateYoutubeVideo();
-
+// generateYoutubeVideo();
+// getRandomWow();
 
 
 
