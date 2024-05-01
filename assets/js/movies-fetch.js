@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 
-function generateYoutubeVideo(){
+function generateYoutubeVideo(VideoIdFromSearch){
     // 2. This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
 
@@ -99,7 +99,8 @@ function generateYoutubeVideo(){
       player = new YT.Player('player_1', {
         height: '390',
         width: '640',
-        videoId: 'ConEzQ5XkM4',
+        // loadVideoById:`${VideoIdFromSearch}`,
+        videoId: VideoIdFromSearch,
         playerVars: {
           'playsinline': 1
         },
@@ -130,3 +131,29 @@ getGenresList();
 
 
     // const apiMovieUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=28`;
+
+// Youtube API key :AIzaSyC4dgCkBRKh4k4-5zlus895GfGXFbMNAQc
+
+
+function getYoutubeSearchItems(){
+
+    const apiYoutubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyC4dgCkBRKh4k4-5zlus895GfGXFbMNAQc&type=video&q=trailer+scream`;
+
+    fetch(apiYoutubeUrl)
+    .then(function (response) {
+        if (response.ok) {
+        response.json().then(function (data) {
+            generateYoutubeVideo(data.items[0].id.videoId);
+        });
+        } else {
+        alert(`Error:${response.statusText}`);
+        }
+    })
+    .catch(function (error) {
+        alert('Unable to connect Youtube');
+    });
+}
+
+
+
+getYoutubeSearchItems()
