@@ -37,12 +37,14 @@ function getBaseURL(){
 function getGenresList(){
 
     const apiUrl = `https://api.themoviedb.org/3/genre/movie/list`;
+    const genresDict = {};
 
     fetch(apiUrl, tmdbOptions)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          console.log(data);
+        //   console.log(data.genres);
+          localStorage.setItem('genresList', JSON.stringify(data.genres))
         });
       } else {
         alert(`Error:${response.statusText}`);
@@ -79,7 +81,7 @@ function getRandomWow(){
 
 document.addEventListener("DOMContentLoaded", function(event) {
     //código a ejecutar cuando existe la certeza de que el DOM está listo para recibir acciones
-    getRandomWow();
+    // getRandomWow();
     // audioContainer.play();
 });
 
@@ -119,10 +121,12 @@ buttonTest.addEventListener('click', function(){
     audioContainer.play();
 });
 
+getGenresList();
+
+// let id = genresList.find(item => item.name === 2);
+
 // generateYoutubeVideo();
 // getRandomWow();
 
 
-
-    // const apiMovieGenres = `https://api.themoviedb.org/3/genre/movie/list`;
-    // const apiMovieUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=28&page=2`;
+    // const apiMovieUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=28`;
