@@ -162,7 +162,7 @@ function getAndSetPoster(){
         
         const posterPath = String(data.results[1].poster_path).slice(1);        
         console.log(`http://image.tmdb.org/t/p/${posterPath}`)
-        cardImage.setAttribute('src', `http://image.tmdb.org/t/p/original/${posterPath}`);
+        cardImage.setAttribute('src', `http://image.tmdb.org/t/p/w342/${posterPath}`);
       });
     } else {
       alert(`Error:${response.statusText}`);
