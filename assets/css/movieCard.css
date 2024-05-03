@@ -1,0 +1,13 @@
+h1 { 
+    color: var(--bulma-primary);
+}
+
+img {
+    object-fit: cover;
+    border-radius: 2% 2% 0 0;
+}
+
+.moviePoster{
+    padding: 0%!important;
+}
+
