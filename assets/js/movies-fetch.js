@@ -44,6 +44,7 @@ function getGenresList(){
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
+          console.log(data.genres)
           localStorage.setItem('genresList', JSON.stringify(data.genres))
         });
       } else {
@@ -174,3 +175,4 @@ function getAndSetPoster(){
 }
 
 getAndSetPoster();
+getGenresList();
