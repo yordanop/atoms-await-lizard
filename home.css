@@ -1,5 +1,22 @@
-.header{
-  is-justify-content: center;  
+*{
+  box-sizing: border-box;
+  
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#title-container{
+  position:absolute;
+  margin: auto;
+  top: 30vh;
+  justify-content: center;
+  align-items: center;
+  
 
 }
+
 
