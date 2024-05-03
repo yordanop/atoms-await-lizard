@@ -40,12 +40,11 @@ function getGenresList(){
 
     const apiUrl = `https://api.themoviedb.org/3/genre/movie/list`;
 
-    fetch(apiUrl, tmdbOptions)
+    return fetch(apiUrl, tmdbOptions)
     .then(function (response) {
       if (response.ok) {
-        response.json().then(function (data) {
-          console.log(data.genres)
-          localStorage.setItem('genresList', JSON.stringify(data.genres))
+        return response.json().then(function (data) {
+          return data.genres;
         });
       } else {
         alert(`Error:${response.statusText}`);
@@ -75,12 +74,6 @@ function getRandomWow(){
       alert('Unable to connect TMDB');
     });
 }
-
-
-
-// document.addEventListener("DOMContentLoaded", function(event) {
-// });
-
 
 function generateYoutubeVideo(VideoIdFromSearch){
     // 2. This code loads the IFrame Player API code asynchronously.
@@ -162,7 +155,7 @@ function getAndSetPoster(){
       response.json().then(function (data) {
         
         const posterPath = String(data.results[1].poster_path).slice(1);        
-        console.log(`http://image.tmdb.org/t/p/${posterPath}`)
+        // console.log(`http://image.tmdb.org/t/p/${posterPath}`)
         cardImage.setAttribute('src', `http://image.tmdb.org/t/p/w342/${posterPath}`);
       });
     } else {
@@ -175,4 +168,13 @@ function getAndSetPoster(){
 }
 
 getAndSetPoster();
-getGenresList();
+
+  
+document.addEventListener("DOMContentLoaded", function(event) {
+
+  getGenresList()
+  .then(function(genres) {
+    localStorage.setItem('genresList', JSON.stringify(genres));
+  })
+
+});
