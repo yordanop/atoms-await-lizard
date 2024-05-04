@@ -87,15 +87,6 @@ function generateYoutubeVideo(VideoIdFromSearch){
 
 
 
-// getGenresList();
-
-// let id = genresList.find(item => item.name === 2);
-
-// getRandomWow();
-
-
-    // const apiMovieUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=28`;
-
 
 
 function setYoutubeVideo(){

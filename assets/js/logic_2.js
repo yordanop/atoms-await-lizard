@@ -6,12 +6,7 @@ function getAndSaveGenreMoviesList(genreID){
     .then(function (response) {
       if (response.ok) {
         return response.json().then(function (data) {
-          
-        //   const posterPath = String(data.results[1].poster_path).slice(1);
-          
         return data.results;
-
-        //   cardImage.setAttribute('src', `http://image.tmdb.org/t/p/w342/${posterPath}`);
         });
       } else {
         alert(`Error:${response.statusText}`);
@@ -37,7 +32,7 @@ function getAndSaveGenreMoviesList(genreID){
       }
     })
     .catch(function (error) {
-      alert('Unable to connect TMDB');
+      alert('Unable to connect Owen Wilson WOWs');
     });
 }
 
@@ -48,11 +43,8 @@ function generateMovieCards(movieInfo){
     const magicSound = document.createElement('audio');
     getRandomWow(magicSound);
 
-   
-    
-
     const cellContainer = document.createElement('div');
-    cellContainer.setAttribute('class', 'cell');
+    cellContainer.setAttribute('class', 'cell is-clickable');
 
     const cardContainer = document.createElement('div');
     cardContainer.setAttribute('class', 'card m-3');
@@ -100,9 +92,6 @@ function generateMovieCards(movieInfo){
 
     movieCardsContainer.appendChild(cellContainer);
 
-
-
-    
     cellContainer.addEventListener('click', function(){
         magicSound.play();
     });
@@ -114,6 +103,7 @@ function generateMovieCards(movieInfo){
 const movieCardsContainer = document.querySelector('#main-movie-container');
 const inputGenre = 28;
 const genresDict = JSON.parse(localStorage.getItem('genresList'));
+const backButton = document.querySelector('#return-button');
 
 let genreName = genresDict.find(item => item.id === inputGenre).name;
 
@@ -123,8 +113,15 @@ getAndSaveGenreMoviesList(inputGenre)
 })
 
 
+backButton.addEventListener('click', function(){
+    location.href = './home.html'
+});
+
+
+
 // adaptar y poner en una funcion las siguientes lineas
 const moviesGenreArray = JSON.parse(localStorage.getItem('moviesGenreList'));
 for (let movies_i of moviesGenreArray){
     generateMovieCards(movies_i);
 }
+
