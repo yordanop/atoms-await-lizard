@@ -1,11 +1,3 @@
-// const tmdbOptions = {
-//     method: 'GET',
-//     headers: {
-//         accept: 'application/json',
-//         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYzIwYjFiNzEzYTZhYTIzNWZmMjQ5ZmM3YzQ1NzNiZiIsInN1YiI6IjY2MzI0Yjk3MDA2YjAxMDEyZDFkMWZmZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4ZidW01P2Y6QUvUgtmUVpvmm2fchAFrVzkFnxC5xPnY'
-//     }
-//   };
-
 function getAndSaveGenreMoviesList(genreID){
 
     const apiUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreID}`;
@@ -30,10 +22,34 @@ function getAndSaveGenreMoviesList(genreID){
     });
   }
 
+  function getRandomWow(wowContainer){
+
+    const apiUrl = `https://owen-wilson-wow-api.onrender.com/wows/random`;
+
+    fetch(apiUrl, owenWilsonOptions)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+            wowContainer.src = `${data[0].audio}`;
+        });
+      } else {
+        alert(`Error:${response.statusText}`);
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to connect TMDB');
+    });
+}
+
 function generateMovieCards(movieInfo){
     const posterPath = String(movieInfo.poster_path).slice(1);
     const movieName = movieInfo.title;
 
+    const magicSound = document.createElement('audio');
+    getRandomWow(magicSound);
+
+   
+    
 
     const cellContainer = document.createElement('div');
     cellContainer.setAttribute('class', 'cell');
@@ -62,7 +78,7 @@ function generateMovieCards(movieInfo){
     const movieGenreIds = movieInfo.genre_ids;
 
     
-
+    cellContainer.appendChild(magicSound);
     cellContainer.appendChild(cardContainer);
 
     cardContainer.appendChild(cardContentContainer);
@@ -83,7 +99,17 @@ function generateMovieCards(movieInfo){
     overlayDivContainer.appendChild(textContainer);
 
     movieCardsContainer.appendChild(cellContainer);
+
+
+
+    
+    cellContainer.addEventListener('click', function(){
+        magicSound.play();
+    });
 }
+
+
+
 
 const movieCardsContainer = document.querySelector('#main-movie-container');
 const inputGenre = 28;
@@ -97,29 +123,8 @@ getAndSaveGenreMoviesList(inputGenre)
 })
 
 
+// adaptar y poner en una funcion las siguientes lineas
 const moviesGenreArray = JSON.parse(localStorage.getItem('moviesGenreList'));
-
-
 for (let movies_i of moviesGenreArray){
     generateMovieCards(movies_i);
-    console.log(movies_i);
 }
-
-
-
-//   <div class="cell">
-//   <div class="card m-3">
-//       <div class="card-content moviePoster p-0">
-//           <figure class="card-image">
-//               <img id="poster-container" src="" alt="">
-//               <div class="is-overlay is-flex is-flex-direction-column-reverse">
-//                   <p class="title is-4 py-4 pl-3 movie-title">
-//                       “There are two hard things in computer science: cache invalidation, naming
-//                       things, and off-by-one errors.”
-//                   </p>
-//               </div>
-//           </figure>
-//           <p class="subtitle button p-2 m-3">Jeff Atwood</p>
-//       </div>
-//   </div>
-// </div>

@@ -55,26 +55,6 @@ function getGenresList(){
     });
 }
 
-var audioContainer = document.querySelector('#wow-container')
-function getRandomWow(){
-
-    const apiUrl = `https://owen-wilson-wow-api.onrender.com/wows/random`;
-
-    fetch(apiUrl, owenWilsonOptions)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-          audioContainer.src = `${data[0].audio}`;
-        });
-      } else {
-        alert(`Error:${response.statusText}`);
-      }
-    })
-    .catch(function (error) {
-      alert('Unable to connect TMDB');
-    });
-}
-
 function generateYoutubeVideo(VideoIdFromSearch){
     // 2. This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
@@ -105,10 +85,7 @@ function generateYoutubeVideo(VideoIdFromSearch){
 
 }
 
-const buttonTest = document.querySelector('#test-button');
-buttonTest.addEventListener('click', function(){
-    audioContainer.play();
-});
+
 
 // getGenresList();
 
