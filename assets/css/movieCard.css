@@ -2,12 +2,8 @@ h1 {
     color: var(--bulma-primary);
 }
 
-img {
-    object-fit: cover;
-    border-radius: 2% 2% 0 0;
+.movie-title{
+    
+    background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.40) 20%), 
+                linear-gradient(-45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.40) 20%);
 }
-
-.moviePoster{
-    padding: 0%!important;
-}
-

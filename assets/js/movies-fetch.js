@@ -167,7 +167,7 @@ function getAndSetPoster(){
   });
 }
 
-getAndSetPoster();
+// getAndSetPoster();
 
   
 document.addEventListener("DOMContentLoaded", function(event) {
