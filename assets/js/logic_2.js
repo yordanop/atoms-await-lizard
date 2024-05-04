@@ -37,26 +37,46 @@ function generateMovieCards(movieInfo){
 
     const cellContainer = document.createElement('div');
     cellContainer.setAttribute('class', 'cell');
+
     const cardContainer = document.createElement('div');
     cardContainer.setAttribute('class', 'card m-3');
+
     const cardContentContainer = document.createElement('div');
     cardContentContainer.setAttribute('class', 'card-content moviePoster p-0');
+
     const figureContainer = document.createElement('figure');
     figureContainer.setAttribute('class', 'card-image');
+
     const imgContainer = document.createElement('img');
     imgContainer.setAttribute('src', `http://image.tmdb.org/t/p/w342/${posterPath}`);
     imgContainer.setAttribute('alt', `Movie poster of ${movieName}`);
+
     const overlayDivContainer = document.createElement('div');
     overlayDivContainer.setAttribute('class', 'is-overlay is-flex is-flex-direction-column-reverse');
+
     const textContainer = document.createElement('p');
     textContainer.setAttribute('class', 'title is-4 py-4 pl-3 movie-title');
-    textContainer.innerHTML(`movieName`);
+    textContainer.innerHTML = movieName;
+
     const textFooterContainer = document.createElement('p');
     textFooterContainer.setAttribute('class', 'subtitle button p-2 m-3');
+
+    cellContainer.appendChild(cardContainer);
+
+    cardContainer.appendChild(cardContentContainer);
+
+    cardContentContainer.appendChild(figureContainer);
+    cardContentContainer.appendChild(textFooterContainer);
     
+    figureContainer.appendChild(overlayDivContainer);
+    figureContainer.appendChild(imgContainer);
+
+    overlayDivContainer.appendChild(textContainer);
+
+    movieCardsContainer.appendChild(cellContainer);
 }
 
-
+const movieCardsContainer = document.querySelector('#main-movie-container');
 const inputGenre = 28;
 const genresDict = JSON.parse(localStorage.getItem('genresList'));
 
@@ -67,6 +87,13 @@ getAndSaveGenreMoviesList(inputGenre)
     localStorage.setItem('moviesGenreList', JSON.stringify(moviesList));
 })
 
+
+const moviesGenreArray = JSON.parse(localStorage.getItem('moviesGenreList'));
+
+
+for (let movies_i of moviesGenreArray){
+    generateMovieCards(movies_i);
+}
 
 
 //   <div class="cell">
