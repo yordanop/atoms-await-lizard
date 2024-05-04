@@ -1,0 +1,251 @@
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* define the colors that will be used in the website*/
+:root {
+    --purple: #8e10e9;
+    --pink: #ff0a8d;
+    --violet: #bc2fa3;
+    --lilac: #edb8f5;
+    --white: #fffaf7;
+    --light: #fffaff;
+    --black: #000000;
+  }
+  
+  /* define the fonts that will be used in the body*/
+  body {  
+    font-family: 'Mulish', sans-serif;
+    font-size: 30px;
+    margin: 5%!important;
+  }
+  
+  /* prioritizing page width*/
+  .container{
+    margin: 0%;
+    width: 100%!important;
+  }
+
+  /* define the fonts that will be used for h1*/
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: var(--violet);
+  }
+
+  p {
+    font-size: 20px;
+  }  
+  
+  .navbar {
+    background-color: var(--violet);
+    color: var(--lilac);
+    width: 100%;
+    text-align: right;
+  }
+  
+  #navbar {
+    background-color: var(--violet);
+    color: var(--lilac);
+    float: right;
+  }
+
+  .custom-navbar a {
+    font-size: 1.5rem;
+    color: var(--white);
+    float: right;
+  }
+  
+  .custom-navbar a:hover {
+    color: var(--pink);
+  }
+  
+  .nav-item{
+    color: var(--lilac);
+  }
+
+  .custom-btn {
+    background-color: var(--purple);
+    color: var(--white);
+  }
+  
+  .custom-btn:hover {
+    background-color: var(--pink);
+    color: var(--white);
+  }
+  
+  .card {
+    /* display: block; */
+    background-color: var(--light);
+    border: 1px solid #eceff1;
+    border-radius: 8px;
+    box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+    rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+    /* margin: 60px auto;
+    padding: 20px;
+    width: 100vw;  */
+  }
+  
+  .custom-card {
+    border-color: var(--violet);
+    color: var(--purple);
+  }
+  
+  .custom-card-header {
+    background-color: var(--violet);
+    color: var(--lilac);
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    text-align: center;
+    /* padding: 14px 16px; */
+    text-decoration: none;
+  }
+  
+  .menu {
+    width: 100%;
+  }
+  
+  .footer {
+    width: 100%;
+    position: absolute;
+    padding-bottom: 100px;
+    bottom: 0px;
+  }
+  
+  .toggle {
+    border-style: outset;
+    width: 400px;
+    background-color: rgba(76, 175, 80, 0.15)
+  }
+  
+  /*Definition of the style for the dark mode*/
+  .dark {
+    background-color:#243447;
+    height: 100%;
+    color: #bebebe;
+    border: 2px solid #eceff1;  
+  }
+  
+  .dark li a {
+    color: #bebebe;
+  }
+  
+  .dark li a:hover {
+    background-color: #111;
+  }
+
+  /*Definition of the style for the light mode*/
+  .light {
+    background-color: var(--light);
+    color: var(--violet);
+    height: 100%;
+    padding: 0px;
+    border: 2px solid #eceff1;  
+  }
+  
+  .light li a {
+    color: black;
+  }
+  
+  .light li a:hover {
+    background-color: rgb(29, 128, 210);
+  }
+
+  .light .card{
+    border: 1px solid #eceff1;
+  }
+  
+  /*Style for the switch button*/
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /*Hide the HTML default checkbox*/
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /*Properties of the slider*/
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: rgb(29, 128, 210);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px rgb(29, 128, 210);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  /* Margin for the row and column classes*/
+  .row {
+    margin: 0%;
+    /* display: flex; */
+  }
+  
+  .col {
+    margin: 20px;
+  }
+  
+  /*Style for the footer*/
+  h5, h6{
+    color: var(--violet);
+    text-align: center;
+    margin-top: 1%;
+  }
+   

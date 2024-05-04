@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+
+  <link rel="stylesheet" href="./assets/css/moviePage.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.0/css/bulma.css">
+  <title> Movie Info </title>
+
+  <h1> Movie Info</h1>
+
+</head>
+
+<body>
+  <!-- Inputs required from the user (username, post title and post entry) and submit button -->
+  <div class="card">
+    <h1> Have you seen this movie? Leave your review! </h1>
+    <form>
+      <label for="todo-text"> Username </label>
+      <input type="text" placeholder="Please write your username" name="todo-text" id="todo-text" />
+      <br>
+      <label for="title-text"> Movie Title </label>
+      <input type="text" placeholder="Please enter movie title" name=title-text" id="title-text" />
+      <br>
+      <label for="title-text"> Entry Name </label>
+      <input type="text" placeholder="Please name your entry" name=title-text" id="title-text" />
+      <br>
+      <label for="title-text"> Rating </label>
+      <input type="text" placeholder="Please rate the movie" name=title-text" id="title-text" />
+      <br>
+      <label for="entry-text"> Your review </label><br>
+      <textarea type="text" placeholder="Please input your review" name=entry-text" id="entry-text"></textarea>
+      <br>
+      <button type="button" id="btn-submit"> Submit </button>
+    </form>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./assets/js/moviePage.js"></script>
+
+</body>
+
+<footer>
+    <h5>Made with ❤️️ by Les Lumières</h5>
+    <h5> &copy; 2024 Atoms Await Lizard Studio </h5>
+</footer>
+
+</html>
