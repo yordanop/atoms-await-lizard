@@ -154,7 +154,7 @@ function getAndSetPoster(){
     if (response.ok) {
       response.json().then(function (data) {
         
-        const posterPath = String(data.results[1].poster_path).slice(1);        
+        const posterPath = String(data.results[1].poster_path).slice(1);
         // console.log(`http://image.tmdb.org/t/p/${posterPath}`)
         cardImage.setAttribute('src', `http://image.tmdb.org/t/p/w342/${posterPath}`);
       });
@@ -171,7 +171,6 @@ function getAndSetPoster(){
 
   
 document.addEventListener("DOMContentLoaded", function(event) {
-
   getGenresList()
   .then(function(genres) {
     localStorage.setItem('genresList', JSON.stringify(genres));
