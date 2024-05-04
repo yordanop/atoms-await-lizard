@@ -58,15 +58,24 @@ function generateMovieCards(movieInfo){
     textContainer.setAttribute('class', 'title is-4 py-4 pl-3 movie-title');
     textContainer.innerHTML = movieName;
 
-    const textFooterContainer = document.createElement('p');
-    textFooterContainer.setAttribute('class', 'subtitle button p-2 m-3');
+
+    const movieGenreIds = movieInfo.genre_ids;
+
+    
 
     cellContainer.appendChild(cardContainer);
 
     cardContainer.appendChild(cardContentContainer);
 
     cardContentContainer.appendChild(figureContainer);
-    cardContentContainer.appendChild(textFooterContainer);
+
+    for (let gnr_i = 0 ; gnr_i <= Math.min(1, movieGenreIds.length); gnr_i++){
+        let genreName = genresDict.find(item => item.id === movieGenreIds[gnr_i]).name;
+        let textFooterContainer = document.createElement('p');
+        textFooterContainer.setAttribute('class', 'subtitle button p-2 m-3');   
+        textFooterContainer.innerHTML = genreName;
+        cardContentContainer.appendChild(textFooterContainer);
+    }
     
     figureContainer.appendChild(overlayDivContainer);
     figureContainer.appendChild(imgContainer);
@@ -93,7 +102,9 @@ const moviesGenreArray = JSON.parse(localStorage.getItem('moviesGenreList'));
 
 for (let movies_i of moviesGenreArray){
     generateMovieCards(movies_i);
+    console.log(movies_i);
 }
+
 
 
 //   <div class="cell">
