@@ -1,21 +1,3 @@
-function getAndSaveGenreMoviesList(genreID){
-
-    const apiUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreID}`;
-  
-    return fetch(apiUrl, tmdbOptions)
-    .then(function (response) {
-      if (response.ok) {
-        return response.json().then(function (data) {
-        return data.results;
-        });
-      } else {
-        alert(`Error:${response.statusText}`);
-      }
-    })
-    .catch(function (error) {
-      alert('Unable to connect TMDB');
-    });
-  }
 
   function getRandomWow(wowContainer){
 
@@ -107,10 +89,6 @@ const backButton = document.querySelector('#return-button');
 
 let genreName = genresDict.find(item => item.id === inputGenre).name;
 
-getAndSaveGenreMoviesList(inputGenre)
-.then(function(moviesList) {
-    localStorage.setItem('moviesGenreList', JSON.stringify(moviesList));
-})
 
 
 backButton.addEventListener('click', function(){
