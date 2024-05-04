@@ -2,15 +2,11 @@ body{
   background-color: black;
 }
 
-#img-left{
-width: 150pt;
-height: 100%;
+#img-left, #img-right{
+width: 20vw;
+height: 100vh;
 }
 
-#img-right{
-width: 150pt;
-
-}
 
 @media screen and (max-width: 1024px) {
   /* Estilos específicos para pantallas más pequeñas */
@@ -30,14 +26,16 @@ width: 150pt;
 }
 
 
-#title-container {
+/* #title-container {
   position: fixed;
   top: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  left: 5vh;
+  right: 5vh;
 
-}
+} */
 
 /* Estilos generales para el título */
 #title {

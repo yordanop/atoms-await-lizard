@@ -63,7 +63,7 @@ function getRandomWow(){
   .catch(function (error) {
     alert('Unable to connect TMDB');
   });
-}
+
 function generateYoutubeVideo(VideoIdFromSearch){
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
@@ -89,10 +89,12 @@ function generateYoutubeVideo(VideoIdFromSearch){
     event.target.playVideo();
   }
 }
+
 // const buttonTest = document.querySelector('#test-button');
 // buttonTest.addEventListener('click', function(){
 //     audioContainer.play();
 // });
+
 // getGenresList();
 // let id = genresList.find(item => item.name === 2);
 // getRandomWow();
@@ -113,23 +115,17 @@ function setYoutubeVideo(){
       alert('Unable to connect Youtube');
   });
 }
-// setYoutubeVideo()
-function getAndSetPoster(){
-const apiUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=28`;
-fetch(apiUrl, tmdbOptions)
-.then(function (response) {
-  if (response.ok) {
-    response.json().then(function (data) {
-      const posterPath = String(data.results[1].poster_path).slice(1);
-      // console.log(`http://image.tmdb.org/t/p/${posterPath}`)
-      cardImage.setAttribute('src', `http://image.tmdb.org/t/p/w342/${posterPath}`);
-    });
-  } else {
-    alert(`Error:${response.statusText}`);
-  }
-})
-.catch(function (error) {
-  alert('Unable to connect TMDB');
+
+//getAndSetPoster();
+
+  
+document.addEventListener("DOMContentLoaded", function(event) {
+
+  getGenresList()
+  .then(function(genres) {
+    localStorage.setItem('genresList', JSON.stringify(genres));
+  })
+
 });
 }
 //getAndSetPoster();
