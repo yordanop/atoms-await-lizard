@@ -105,10 +105,10 @@ function generateYoutubeVideo(VideoIdFromSearch){
 
 }
 
-const buttonTest = document.querySelector('#test-button');
-buttonTest.addEventListener('click', function(){
-    audioContainer.play();
-});
+// const buttonTest = document.querySelector('#test-button');
+// buttonTest.addEventListener('click', function(){
+//     audioContainer.play();
+// });
 
 // getGenresList();
 
@@ -167,7 +167,7 @@ function getAndSetPoster(){
   });
 }
 
-getAndSetPoster();
+//getAndSetPoster();
 
   
 document.addEventListener("DOMContentLoaded", function(event) {
