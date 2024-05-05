@@ -28,14 +28,14 @@
                         <div class="field">
                             <label class="label">Username</label>
                             <div class="control">
-                              <input class="input" type="text" placeholder="e.g John Smith">
+                              <input class="input" type="text" placeholder="e.g John Smith" id="username">
                             </div>
                           </div>
                           
                           <div class="field">
                             <label class="label">Movie Title</label>
                             <div class="control">
-                              <input class="input" type="email" placeholder="e.g. johnsmith@gmail.com">
+                              <input class="input" type="text" placeholder="e.g. Jurassic Park" id="movieTitle">
                             </div>
                           </div>
 
@@ -43,7 +43,7 @@
                             <label class="label">Your rating</label>
                             <div class="control">
                             <div class="select">
-                                <select>
+                                <select id="rating">
                                     <option>1 star</option>
                                     <option>2 stars</option>
                                     <option>3 stars</option>
@@ -57,20 +57,21 @@
                         <div class="field">
                             <label class="label">Entry Title</label>
                             <div class="control">
-                              <input class="input" type="email" placeholder="e.g. One of the greatest movies of our time!">
+                              <input class="input" type="email" placeholder="e.g. One of the greatest movies of our time!" id="entryTitle">
                             </div>
                           </div>
 
                         <div class="field">
                             <label class="label">Please enter your review</label>
                             <div class="control">
-                            <textarea class="textarea" placeholder="Your Review"></textarea>
+                            <textarea class="textarea" placeholder="Your Review" id="reviewEntry"></textarea>
                             </div>
                         </div>
 
                         <div class="field is-grouped">
                             <div class="control">
-                              <button class="button is-primary">Submit</button>
+                              <button class="button is-primary submitbtn">Submit
+                              </button>
                             </div>
                             <div class="control">
                               <button class="button is-link is-light">Cancel</button>
