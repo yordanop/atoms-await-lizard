@@ -1,4 +1,5 @@
 
+
 const tmdbOptions = {
   method: 'GET',
   headers: {
@@ -12,6 +13,12 @@ const owenWilsonOptions = {
       accept: 'application/json'
   }
 };
+
+$('.movieCard').on('click', function(){
+  console.log(this);
+  console.log($(this).children(".card-content"));
+})
+
 const cardImage = document.querySelector('#poster-container');
 let urlBase = null;
 function getBaseURL(){
