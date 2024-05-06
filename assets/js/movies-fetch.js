@@ -1,4 +1,3 @@
-
 const tmdbOptions = {
   method: 'GET',
   headers: {
@@ -51,9 +50,7 @@ function getGenresList(){
   });
 }
 
-var audioContainer = document.querySelector('#wow-container')
-
-function getRandomWow(){
+function getRandomWow(audioContainer){
   const apiUrl = `https://owen-wilson-wow-api.onrender.com/wows/random`;
   fetch(apiUrl, owenWilsonOptions)
   .then(function (response) {
@@ -135,6 +132,7 @@ function generateMovieCards(movieInfo){
   const genresDict = JSON.parse(localStorage.getItem('genresList'));
   const posterPath = String(movieInfo.poster_path).slice(1);
   const movieName = movieInfo.title;
+  const movieCardsContainer = document.querySelector('#main-movie-container');
 
   const magicSound = document.createElement('audio');
   getRandomWow(magicSound);
@@ -144,6 +142,7 @@ function generateMovieCards(movieInfo){
 
   const cardContainer = document.createElement('div');
   cardContainer.setAttribute('class', 'card m-3');
+  
 
   const cardContentContainer = document.createElement('div');
   cardContentContainer.setAttribute('class', 'card-content moviePoster p-0');
@@ -157,6 +156,7 @@ function generateMovieCards(movieInfo){
 
   const overlayDivContainer = document.createElement('div');
   overlayDivContainer.setAttribute('class', 'is-overlay is-flex is-flex-direction-column-reverse');
+  overlayDivContainer.setAttribute('data-movie-id', movieInfo.id);
 
   const textContainer = document.createElement('p');
   textContainer.setAttribute('class', 'title is-4 py-4 pl-3 movie-title');
@@ -173,7 +173,8 @@ function generateMovieCards(movieInfo){
 
   cardContentContainer.appendChild(figureContainer);
 
-  for (let gnr_i = 0 ; gnr_i <= Math.min(1, movieGenreIds.length); gnr_i++){
+  for (let gnr_i = 0 ; gnr_i <= Math.min(1, movieGenreIds.length - 1); gnr_i++){
+
       let genreName = genresDict.find(item => item.id === movieGenreIds[gnr_i]).name;
       let textFooterContainer = document.createElement('p');
       textFooterContainer.setAttribute('class', 'subtitle button p-2 m-3');   
@@ -188,12 +189,20 @@ function generateMovieCards(movieInfo){
 
   movieCardsContainer.appendChild(cellContainer);
 
-  cellContainer.addEventListener('click', function(){
-      magicSound.play();
-      
+  cellContainer.addEventListener('click', function(event){
+
+    magicSound.play();
+    setTimeout(changeToMoviePage, 2500);      
+
+    const divContainer = event.target;
+    localStorage.setItem('recentClickId', JSON.stringify(divContainer.getAttribute("data-movie-id")));
+
   });
 }
 
+function changeToMoviePage(){
+  location.href = './Movie-Trailer-Info.html'
+}
 
 function getAndSaveGenreMoviesList(genreID){
 
@@ -224,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     localStorage.setItem('genresList', JSON.stringify(genres));
   });
 
-  const movieCardsContainer = document.querySelector('#main-movie-container');
+  
   const genresDict = JSON.parse(localStorage.getItem('genresList'));
   const inputGenre = 99;
   let genreName = genresDict.find(item => item.id === inputGenre).name;
@@ -241,8 +250,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   for (let movies_i of moviesGenreArray){
     generateMovieCards(movies_i);
   };
-
-
 
 
 });
