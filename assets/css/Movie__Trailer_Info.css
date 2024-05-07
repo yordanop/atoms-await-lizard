@@ -1,0 +1,6 @@
+.modal-wrap{
+    position: fixed;
+    width: 650px;
+    top: 10%;
+    border-radius: 2%;
+}

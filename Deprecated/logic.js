@@ -11,9 +11,8 @@ function createGenreButtons(){
  for(let gen_i of allGenres){
 
         createButton(gen_i.id, gen_i.name);
-    
-}
     }
+}
 
 
 

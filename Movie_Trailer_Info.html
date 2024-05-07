@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.0/css/bulma.css">
+    <link rel="stylesheet" href="./assets/css/Movie__Trailer_Info.css">
+    <title>Document</title>
+</head>
+<body>
+    <button id="return-button" class="button is-success px-4 m-5">
+        <span>Back</span>
+      </button>
+
+    <div class="columns is-centered">
+        <div class="card m-5 column is-three-quarters p-1">
+
+            <div class="card-content has-text-centered">
+                <p id="title-info" class="title is-1 mb-5">Movie title</p>
+                
+                    
+                <div class="card-image my-6">
+                    <div id="trailer-player"></div>
+                </div>
+    
+                <div class="media is-flex is-flex-direction-column">
+                    <div class="subtitle">
+                        <p class="title is-3">Synopsis</p>
+                    </div>
+                    
+                    <div class="movie-info-container is-flex columns">
+                        <div id="movie-synopsis" class="content column is-three-quarters">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
+                          iaculis mauris.
+                        </div>
+            
+                        <div class="media-content">
+
+                            <p id="rating" class="content"></p>
+
+                            <button class="button is-primary is-rounded" id="button"> Enter your review </button>
+
+                            <div class="modal" id="page-modal">
+                                <div class="modal-background ">
+                                    <div class="modal-content">
+                                        <div class="section modal-wrap has-background-link">
+                                            <div class="field">
+                                                <label class="label">Username1</label>
+                                                <div class="control">
+                                                  <input class="input" type="text" placeholder="e.g johnsmith" id="username">
+                                                </div>
+                                              </div>
+                                              
+                                            <div class="field">
+                                                <label class="label">Your rating</label>
+                                                <div class="control">
+                                                <div class="select">
+                                                    <select id="rating">
+                                                        <option>⭐</option>
+                                                        <option>⭐⭐</option>
+                                                        <option>⭐⭐⭐</option>
+                                                        <option>⭐⭐⭐⭐</option>
+                                                        <option>⭐⭐⭐⭐⭐</option>
+                                                    </select>
+                                                </div>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="field">
+                                                <label class="label">Entry Title</label>
+                                                <div class="control">
+                                                  <input class="input" type="email" placeholder="e.g. One of the greatest movies of our time!" id="entryTitle">
+                                                </div>
+                                              </div>
+                    
+                                            <div class="field">
+                                                <label class="label">Please enter your review</label>
+                                                <div class="control">
+                                                <textarea class="textarea" placeholder="Your Review" id="reviewEntry"></textarea>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="field is-grouped">
+                                                <div class="control">
+                                                <button class="button is-link" id="submitButton">Submit</button>
+                                                </div>
+                                                <div class="control">
+                                                <button class="button is-link is-light" id="cancelButton">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="modal-close is-large" aria-label="close"></button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+
+        <div class="content has-text-centered">
+            <h5>Made with ❤️️ by Les Lumières</h5>
+            <h5> &copy; 2024 Atoms Await Lizard Studio </h5>
+        </div>
+        
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./assets/js/Movie_trailer_Info.js"></script>
+</body>
+</html>
