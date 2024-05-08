@@ -109,7 +109,7 @@ function changeToMoviePage(){
 
 document.addEventListener("DOMContentLoaded", function(event) {
     backButton.addEventListener('click', function(){
-        location.href = './Index.html'
+        location.href = './index.html'
     });
 
 
