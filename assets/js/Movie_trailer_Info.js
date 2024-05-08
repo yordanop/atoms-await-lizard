@@ -35,8 +35,7 @@ submitButton.onclick = function () {
     let rating = document.querySelector("#rating").value;
     let entryTitle = document.querySelector("#entryTitle").value;
     let reviewEntry = document.querySelector("#reviewEntry").value;
-    let movieCode = 123;
-    // parseInt(JSON.parse(localStorage.getItem("recentclickId")));
+    let movieCode = parseInt(JSON.parse(localStorage.getItem("recentclickId")));
     reviewHistory.push({ 
         username:username,
         rating:rating,
