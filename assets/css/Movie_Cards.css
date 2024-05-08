@@ -1,3 +1,4 @@
+/* Create faded background for movie title */
 .movie-title{
     background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.40) 20%), 
                 linear-gradient(-45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.40) 20%);

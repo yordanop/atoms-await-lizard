@@ -9,7 +9,7 @@ const owenWilsonOptions = {
     }
 };
 
-
+// function that makes a fetch to an API that returns random audio files with wow from Owen wilson
 function getRandomWow(wowContainer){
 
     const apiUrl = `https://owen-wilson-wow-api.onrender.com/wows/random`;
@@ -29,6 +29,8 @@ function getRandomWow(wowContainer){
     });
 }
 
+
+// fucntion that creates thae cards with movie info that receives as an argument
 function generateMovieCards(movieInfo){
 
     const genresDict = JSON.parse(localStorage.getItem('genresList'));
@@ -102,11 +104,12 @@ function generateMovieCards(movieInfo){
     });
 }
 
+// Function for the event listener of the back button
 function changeToMoviePage(){
     location.href = './Movie_Trailer_Info.html'
 }
 
-
+// when the page is loaded it sets the event listener and generates all the movies from the genre chosen
 document.addEventListener("DOMContentLoaded", function(event) {
     backButton.addEventListener('click', function(){
         location.href = './Index.html'
