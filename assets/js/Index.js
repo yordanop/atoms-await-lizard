@@ -53,13 +53,17 @@ function getAndSaveGenreMoviesList(genreID){
 function createButton(buttonID, buttonName){
     const newButton = document.createElement('button');
     // Completar Array con estilos
-    const bulmaStyles = ['is-link', ]
+    const bulmaStyles = ['is-link', 'is-success', 'is-warning', 'is-danger']
     // crear funcion para obtener numero aleatorio del length de bulmaStyles
+    const mathRandom = Math.floor(Math.random() * bulmaStyles.length);
+    console.log('color random', mathRandom);    
+    
     
 
     newButton.setAttribute("data-genre", buttonID)
     // asginar bulmaStyles[numerorandom] en vex de isprimary
-    newButton.setAttribute('class', "button is-primary m-3" );
+    newButton.className=`button ${bulmaStyles[mathRandom]} m-3`;
+    
     newButton.innerHTML= buttonName;
     btnContainer.appendChild(newButton);
 
