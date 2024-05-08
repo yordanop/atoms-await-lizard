@@ -35,8 +35,7 @@ submitButton.onclick = function () {
     let rating = document.querySelector("#rating").value;
     let entryTitle = document.querySelector("#entryTitle").value;
     let reviewEntry = document.querySelector("#reviewEntry").value;
-    let movieCode = 123;
-    // parseInt(JSON.parse(localStorage.getItem("recentclickId")));
+    let movieCode = parseInt(JSON.parse(localStorage.getItem("recentclickId")));
     reviewHistory.push({ 
         username:username,
         rating:rating,
@@ -64,6 +63,23 @@ cancelButton.onclick = function () {
 
 //using parse to convert strings to objects
 const todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+function obtainSpecificReviews(){
+  const reviewsMovie = [];
+
+  for(let reviews_i of todos){
+    if (reviews_i.movieCode === movieId){
+      reviewsMovie.push(reviews_i);
+    }
+  }
+
+  localStorage.setItem('currentMovieRevies', reviewsMovie);
+};
+
+
+
+
+
 
 //append new elements to the array, considering user inputs
 function renderTodos() {
