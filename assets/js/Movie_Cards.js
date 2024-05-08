@@ -61,7 +61,7 @@ function generateMovieCards(movieInfo){
     overlayDivContainer.setAttribute('data-movie-id', movieInfo.id);
   
     const textContainer = document.createElement('p');
-    textContainer.setAttribute('class', 'title is-4 py-4 pl-3 movie-title');
+    textContainer.setAttribute('class', 'title is-4 py-4 pl-3 has-text-grey-lighter movie-title');
     textContainer.innerHTML = movieName;
   
   

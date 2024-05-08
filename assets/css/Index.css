@@ -3,6 +3,10 @@ width: 20vw;
 height: 100vh;
 }
 
+#button-container{
+
+  border-radius: 15px;
+}
 
 @media screen and (max-width: 1024px) {
   /* Estilos específicos para pantallas más pequeñas */
