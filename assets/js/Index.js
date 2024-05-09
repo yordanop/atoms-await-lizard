@@ -11,7 +11,6 @@ const tmdbOptions = {
 const btnContainer = document.querySelector('#button-container');
 let allGenres = JSON.parse(localStorage.getItem('genresList'));
 
-/
 function getGenresList(){
     const apiUrl = `https://api.themoviedb.org/3/genre/movie/list`;
     return fetch(apiUrl, tmdbOptions)
@@ -49,8 +48,6 @@ function getAndSaveGenreMoviesList(genreID){
       alert('Unable to connect TMDB');
     });
 }
-  
-
 
 function createButton(buttonID, buttonName){
     const newButton = document.createElement('button');
