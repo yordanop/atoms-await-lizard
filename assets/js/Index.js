@@ -11,6 +11,9 @@ const tmdbOptions = {
 const btnContainer = document.querySelector('#button-container');
 let allGenres = JSON.parse(localStorage.getItem('genresList'));
 
+
+// This function generates a list of genres pulled from the API themoviedb 
+
 function getGenresList(){
     const apiUrl = `https://api.themoviedb.org/3/genre/movie/list`;
     return fetch(apiUrl, tmdbOptions)
@@ -29,7 +32,7 @@ function getGenresList(){
 }
 
 
-//Fuction makes an API fetch and pulls a list of the genre chosen
+//Fuction makes an API fetch and pulls a list of the genre chosen by the user
 function getAndSaveGenreMoviesList(genreID){
 
     const apiUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreID}`;
@@ -49,24 +52,19 @@ function getAndSaveGenreMoviesList(genreID){
     });
 }
 
+
+// This fuction creates a button for every genre pulled from the API. Also, it gives the buttons a random color each time the page reloads 
+
 function createButton(buttonID, buttonName){
     const newButton = document.createElement('button');
-    // Completar Array con estilos
     const bulmaStyles = ['is-link', 'is-success', 'is-warning', 'is-danger']
-    // crear funcion para obtener numero aleatorio del length de bulmaStyles
     const mathRandom = Math.floor(Math.random() * bulmaStyles.length);
     console.log('color random', mathRandom);    
     
-    
-
     newButton.setAttribute("data-genre", buttonID)
-    // asginar bulmaStyles[numerorandom] en vex de isprimary
     newButton.className=`button ${bulmaStyles[mathRandom]} m-3`;
-    
     newButton.innerHTML= buttonName;
     btnContainer.appendChild(newButton);
-
-    
 
     newButton.addEventListener('click', function(event){
         const genreFromButton = event.target.getAttribute('data-genre');
@@ -84,6 +82,7 @@ function createButton(buttonID, buttonName){
     });
 }
 
+// Each created button will have an specific ID so we can identify them and name them 
 function createGenreButtons(){
   for(let gen_i of allGenres){
     createButton(gen_i.id, gen_i.name);
@@ -91,7 +90,7 @@ function createGenreButtons(){
 };
 
 
-
+//
 document.addEventListener("DOMContentLoaded", function(event) {  
 
   if (!allGenres){

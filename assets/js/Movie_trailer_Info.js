@@ -35,7 +35,19 @@ submitButton.onclick = function () {
     let rating = document.querySelector("#rating").value;
     let entryTitle = document.querySelector("#entryTitle").value;
     let reviewEntry = document.querySelector("#reviewEntry").value;
-    let movieCode = 123;
+
+
+    let movieCode = parseInt(JSON.parse(localStorage.getItem("recentclickId")));
+    reviewHistory.push({ 
+        username:username,
+        rating:rating,
+        entryTitle:entryTitle,
+        reviewEntry:reviewEntry,
+        movieCode:movieCode
+    }) 
+    console.log();
+    localStorage.setItem("reviews",JSON.stringify(reviewHistory));
+
 
     if (username === '' || rating === '' || entryTitle === '' || reviewEntry === '' || movieCode === '') {
       //alert the user if he/she doesn't fill out all the required fields
@@ -73,6 +85,23 @@ const movieReviews = document.querySelector('.movieReviews');
 
 //using parse to convert strings to objects
 const todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+function obtainSpecificReviews(){
+  const reviewsMovie = [];
+
+  for(let reviews_i of todos){
+    if (reviews_i.movieCode === movieId){
+      reviewsMovie.push(reviews_i);
+    }
+  }
+
+  localStorage.setItem('currentMovieRevies', reviewsMovie);
+};
+
+
+
+
+
 
 //append new elements to the array, considering user inputs
 function renderTodos() {
