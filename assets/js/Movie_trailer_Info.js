@@ -1,7 +1,7 @@
 const backButton = document.querySelector('#return-button');
 const titleDiv = document.querySelector('#title-info');
 const synopsisDiv = document.querySelector('#movie-synopsis');
-const ratingDiv = document.querySelector('#rating');
+const ratingDiv_1 = document.querySelector('#rating');
 const movieId = parseInt(JSON.parse(localStorage.getItem('recentClickId')));
 const moviesList = JSON.parse(localStorage.getItem('moviesGenreList'));
 const containerReviews = document.querySelector('#review-container');
@@ -26,17 +26,17 @@ window.onclick = function (event) {
 submitButton.onclick = function () {
     console.log();
     let nameUser = document.querySelector("#username").value;
-    let ratingUser = document.querySelector("#rating").value;
-    // ratingUserValue =
     let entryTitleUser = document.querySelector("#entryTitle").value;
     let reviewEntryUser = document.querySelector("#reviewEntry").value;
     let movieCodeUser = movieId;
-    console.log(ratingUser);
+    let ratingUser = document.querySelector("#rating_1").value;
+
+  console.log(ratingUser);
     if(nameUser !== '' && entryTitleUser !== '' && reviewEntryUser !== ''){
-      console.log(ratingUser);
+      
       reviewHistory.push({
           username:nameUser,
-          rating: `hola ${ratingUser}`,
+          rating: ratingUser,
           entryTitle:entryTitleUser,
           reviewEntry:reviewEntryUser,
           movieCode:movieCodeUser
@@ -49,6 +49,7 @@ submitButton.onclick = function () {
       modal.style.display = 'none';
       renderTodos();
     }
+
 }
 cancelButton.onclick = function () {
     modal.style.display = 'none';
@@ -64,6 +65,7 @@ function getSpecificReviews(movieReviewsAll, specificId){
 }
 //append new elements to the array, considering user inputs
 function renderTodos() {
+  deleteallReviews();
   getSpecificReviews(reviewHistory, movieId);
   const reviews = JSON.parse(localStorage.getItem('currentMovieReviews'));
   for (let review_i of reviews) {
@@ -72,19 +74,33 @@ function renderTodos() {
     const titleReview = document.createElement('h3');
     const ratingReview = document.createElement('p');
     const contentReview = document.createElement('p');
-    reviewContainer.setAttribute('class', 'card is-flex is-flex-direction-column');
-    reviewContentContainer.setAttribute('class', 'card-content');
+
+    reviewContainer.setAttribute('class', 'card is-flex is-flex-direction-column review-container-entry');
+    reviewContentContainer.setAttribute('class', 'card-content ');
+
     titleReview.setAttribute('class', 'title is-4');
     titleReview.textContent = review_i.entryTitle;
+
     ratingReview.setAttribute('class', 'content');
     ratingReview.textContent = review_i.rating;
+
     contentReview.setAttribute('class', 'content');
     contentReview.textContent = review_i.reviewEntry;
+
     reviewContainer.appendChild(reviewContentContainer);
     reviewContentContainer.appendChild(titleReview);
+
     reviewContentContainer.appendChild(ratingReview);
     reviewContentContainer.appendChild(contentReview);
     containerReviews.appendChild(reviewContainer);
+  }
+}
+
+function deleteallReviews(){
+  const reviewsContainers = document.querySelectorAll('.review-container-entry');
+  // localStorage.clear();
+  for(let reviewcontainer_i of reviewsContainers){
+    reviewcontainer_i.remove();
   }
 }
 // -----------------------------------------------------------------------------------------------------------------
@@ -130,7 +146,7 @@ function generateYoutubeVideo(VideoIdFromSearch){
 }
 document.addEventListener("DOMContentLoaded", function(event) {
     const storedTodos = JSON.parse(localStorage.getItem('todos'));
-    renderTodos();
+    
     const movieInfo = moviesList.find(item => item.id === movieId);
     const movieTitle = movieInfo.title;
     const searchFilter = movieTitle.replace(/ /g, '+');
@@ -139,6 +155,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
     titleDiv.textContent = movieTitle;
     synopsisDiv.innerHTML = movieInfo.overview;
-    ratingDiv.innerHTML = `Rating : ${movieInfo.vote_average}` ;
+    ratingDiv_1.innerHTML = `Rating : ${movieInfo.vote_average}` ;
+    
+    renderTodos();
     // setYoutubeVideo(searchFilter);
 });
