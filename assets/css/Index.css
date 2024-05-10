@@ -8,6 +8,10 @@ height: 100vh;
   border-radius: 15px;
 }
 
+.ref-div{
+  height: 1vh;
+}
+
 @media screen and (max-width: 1024px) {
   /* Estilos específicos para pantallas más pequeñas */
   #img-left {

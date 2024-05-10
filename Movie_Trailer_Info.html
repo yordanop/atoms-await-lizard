@@ -8,14 +8,14 @@
     <title>Document</title>
 </head>
 <body>
-    <button id="return-button" class="button is-success px-4 m-5">
+    <button id="return-button" class="button is-warning px-4 m-5">
         <span>Back</span>
       </button>
 
     <div class="columns is-centered">
         <div class="card m-5 column is-three-quarters p-1">
 
-            <div class="card-content has-text-centered">
+            <div class="card-content has-text-centered has-background-primary-soft">
                 <p id="title-info" class="title is-1 mb-5">Movie title</p>
                 
                     
@@ -36,18 +36,16 @@
             
                         <div class="media-content">
 
-                            <p id="rating" class="content"></p>
+                            <h4 id="rating" class="content subtitle is-3 has-text-white"></h4>
+                            <div class="movieReviews m-3">
+                                <h1>Have you watched it?</h1>
+                            </div>
+                            <button class="button is-warning is-rounded" id="button"> Enter your review </button>
 
-                            <button class="button is-primary is-rounded" id="button"> Enter your review </button>
-
-
-                <div class="movieReviews">
-                    <h1>Movie Reviews</h1>
-                </div>
                             <div class="modal" id="page-modal">
-                                <div class="modal-background ">
+                                <div class="modal-background">
                                     <div class="modal-content">
-                                        <div class="section modal-wrap has-background-link">
+                                        <div class="section modal-wrap has-background-primary-soft">
                                             <div class="field">
                                                 <label class="label">Username</label>  <!-- Username1-->
                                                 <div class="control">
@@ -86,7 +84,7 @@
                     
                                             <div class="field is-grouped">
                                                 <div class="control">
-                                                <button class="button is-link" id="submitButton">Submit</button>
+                                                <button class="button is-warning" id="submitButton">Submit</button>
                                                 </div>
                                                 <div class="control">
                                                 <button class="button is-link is-light" id="cancelButton">Cancel</button>

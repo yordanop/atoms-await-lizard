@@ -70,16 +70,19 @@ function renderTodos() {
   const reviews = JSON.parse(localStorage.getItem('currentMovieReviews'));
   for (let review_i of reviews) {
     const reviewContainer = document.createElement('div');
-    const reviewContentContainer = document.createElement('div');
+    const headerContainer = document.createElement('div');
+    const userContainer = document.createElement('div');
     const titleReview = document.createElement('h3');
+    const reviewContentContainer = document.createElement('div');
     const ratingReview = document.createElement('p');
     const contentReview = document.createElement('p');
 
-    reviewContainer.setAttribute('class', 'card is-flex is-flex-direction-column review-container-entry');
+    reviewContainer.setAttribute('class', 'card is-flex is-flex-direction-column review-container-entry m-3 has-background-primary-soft p-3');
     reviewContentContainer.setAttribute('class', 'card-content ');
 
     titleReview.setAttribute('class', 'title is-4');
-    titleReview.textContent = review_i.entryTitle;
+    titleReview.textContent = `${review_i.entryTitle} - by ${review_i.username} `;
+
 
     ratingReview.setAttribute('class', 'content');
     ratingReview.textContent = review_i.rating;
@@ -87,11 +90,10 @@ function renderTodos() {
     contentReview.setAttribute('class', 'content');
     contentReview.textContent = review_i.reviewEntry;
 
-    reviewContainer.appendChild(reviewContentContainer);
-    reviewContentContainer.appendChild(titleReview);
+    reviewContainer.appendChild(titleReview);
 
-    reviewContentContainer.appendChild(ratingReview);
-    reviewContentContainer.appendChild(contentReview);
+    reviewContainer.appendChild(ratingReview);
+    reviewContainer.appendChild(contentReview);
     containerReviews.appendChild(reviewContainer);
   }
 }
@@ -120,6 +122,7 @@ function setYoutubeVideo(nameVideo){
         alert('Unable to connect Youtube');
     });
 }
+
 function generateYoutubeVideo(VideoIdFromSearch){
     // This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
@@ -158,5 +161,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ratingDiv_1.innerHTML = `Rating : ${movieInfo.vote_average}` ;
     
     renderTodos();
-    // setYoutubeVideo(searchFilter);
+    setYoutubeVideo(searchFilter);
 });
