@@ -1,137 +1,109 @@
 const backButton = document.querySelector('#return-button');
 const titleDiv = document.querySelector('#title-info');
 const synopsisDiv = document.querySelector('#movie-synopsis');
-const ratingDiv = document.querySelector('#rating');
+const ratingDiv_1 = document.querySelector('#rating');
 const movieId = parseInt(JSON.parse(localStorage.getItem('recentClickId')));
 const moviesList = JSON.parse(localStorage.getItem('moviesGenreList'));
-
-
+const containerReviews = document.querySelector('#review-container');
 // ----------------------------------Modal----------------------------------------------------------
 let button = document.getElementById('button');
 let modal = document.getElementById('page-modal');
-let close = document.getElementsByClassName('modal-close')[0];
 let reviewHistory = JSON.parse(localStorage.getItem("reviews")) || [];
-console.log(reviewHistory);
+let close = document.getElementsByClassName('modal-close')[0];
 let submitButton = document.getElementById('submitButton');
 let cancelButton = document.getElementById('cancelButton');
-
 button.onclick = function () {
     modal.style.display = 'block';
 }
-
 close.onclick = function () {
     modal.style.display = 'none';
 }
-
 window.onclick = function (event) {
     if (event.target.className == 'modal-background') {
         modal.style.display = 'none';
-    } 
+    }
 }
-
 submitButton.onclick = function () {
     console.log();
-    let username = document.querySelector("#username").value;
-    let rating = document.querySelector("#rating").value;
-    let entryTitle = document.querySelector("#entryTitle").value;
-    let reviewEntry = document.querySelector("#reviewEntry").value;
+    let nameUser = document.querySelector("#username").value;
+    let entryTitleUser = document.querySelector("#entryTitle").value;
+    let reviewEntryUser = document.querySelector("#reviewEntry").value;
+    let movieCodeUser = movieId;
+    let ratingUser = document.querySelector("#rating_1").value;
 
-
-    let movieCode = parseInt(JSON.parse(localStorage.getItem("recentclickId")));
-    reviewHistory.push({ 
-        username:username,
-        rating:rating,
-        entryTitle:entryTitle,
-        reviewEntry:reviewEntry,
-        movieCode:movieCode
-    }) 
-    console.log();
-    localStorage.setItem("reviews",JSON.stringify(reviewHistory));
-
-
-    if (username === '' || rating === '' || entryTitle === '' || reviewEntry === '' || movieCode === '') {
-      //alert the user if he/she doesn't fill out all the required fields
-      alert("Please complete all the required fields.");
-      return;
-    }
-
-    else {
-      // parseInt(JSON.parse(localStorage.getItem("recentclickId")));
-          reviewHistory.push({ 
-            username:username,
-            rating:rating,
-            entryTitle:entryTitle,
-            reviewEntry:reviewEntry,
-            movieCode:movieCode
-          }) 
-          console.log();
-          localStorage.setItem("reviews",JSON.stringify(reviewHistory));
+  console.log(ratingUser);
+    if(nameUser !== '' && entryTitleUser !== '' && reviewEntryUser !== ''){
       
-          document.querySelector("#username").value = '';
-          document.querySelector("#rating").value = '';
-          document.querySelector("#entryTitle").value = '';
-          document.querySelector("#reviewEntry").value = '';
-          modal.style.display = 'none';
+      reviewHistory.push({
+          username:nameUser,
+          rating: ratingUser,
+          entryTitle:entryTitleUser,
+          reviewEntry:reviewEntryUser,
+          movieCode:movieCodeUser
+      })
+      localStorage.setItem("reviews",JSON.stringify(reviewHistory));
+      document.querySelector("#username").value = '';
+      document.querySelector("#rating").value = '';
+      document.querySelector("#entryTitle").value = '';
+      document.querySelector("#reviewEntry").value = '';
+      modal.style.display = 'none';
+      renderTodos();
     }
-  
-    cancelButton.onclick = function () {
+
+}
+cancelButton.onclick = function () {
     modal.style.display = 'none';
-    }  
-
-  }
-
-
-const movieReviews = document.querySelector('.movieReviews');
-
-//using parse to convert strings to objects
-const todos = JSON.parse(localStorage.getItem("todos")) || [];
-
-function obtainSpecificReviews(){
-  const reviewsMovie = [];
-
-  for(let reviews_i of todos){
-    if (reviews_i.movieCode === movieId){
-      reviewsMovie.push(reviews_i);
+}
+function getSpecificReviews(movieReviewsAll, specificId){
+  const specificRevies = [];
+  for(let movie_i of movieReviewsAll){
+    if (movie_i.movieCode === specificId){
+      specificRevies.push(movie_i);
     }
-  }
-
-  localStorage.setItem('currentMovieRevies', reviewsMovie);
-};
-
-
-
-
-
-
+  };
+  localStorage.setItem('currentMovieReviews', JSON.stringify(specificRevies));
+}
 //append new elements to the array, considering user inputs
 function renderTodos() {
-//   todoList.innerHTML = '';
+  deleteallReviews();
+  getSpecificReviews(reviewHistory, movieId);
+  const reviews = JSON.parse(localStorage.getItem('currentMovieReviews'));
+  for (let review_i of reviews) {
+    const reviewContainer = document.createElement('div');
+    const titleReview = document.createElement('h3');
+    const reviewContentContainer = document.createElement('div');
+    const ratingReview = document.createElement('p');
+    const contentReview = document.createElement('p');
 
-  for (let i = 0; i < todos.length; i++) {
-    const todo = todos[i];
-    const div = document.createElement('div');
-    div.classList.add("Post");
-    todoList.appendChild(div);
+    reviewContainer.setAttribute('class', 'card is-flex is-flex-direction-column review-container-entry m-3 has-background-primary-soft p-3');
+    reviewContentContainer.setAttribute('class', 'card-content ');
 
-    let h2 = document.createElement('h2');
-    h2.textContent = todo.todoText;
-    h2.setAttribute('data-index', i);
-    div.appendChild(h2);
+    titleReview.setAttribute('class', 'title is-4 mx-4');
+    titleReview.textContent = `${review_i.entryTitle} - by ${review_i.username} `;
 
-    let h3 = document.createElement('h3');
-    h3.textContent = todo.titleText;
-    h3.setAttribute('data-index', i);
-    div.appendChild(h3);
 
-    let p = document.createElement('p');
-    p.textContent = todo.entryText;
-    p.setAttribute('data-index', i);
-    div.appendChild(p);
+    ratingReview.setAttribute('class', 'content mx-5');
+    ratingReview.textContent = review_i.rating;
+
+    contentReview.setAttribute('class', 'content mx-4');
+    contentReview.textContent = review_i.reviewEntry;
+
+    reviewContainer.appendChild(titleReview);
+
+    reviewContainer.appendChild(ratingReview);
+    reviewContainer.appendChild(contentReview);
+    containerReviews.appendChild(reviewContainer);
   }
 }
 
+function deleteallReviews(){
+  const reviewsContainers = document.querySelectorAll('.review-container-entry');
+  // localStorage.clear();
+  for(let reviewcontainer_i of reviewsContainers){
+    reviewcontainer_i.remove();
+  }
+}
 // -----------------------------------------------------------------------------------------------------------------
-
 function setYoutubeVideo(nameVideo){
     const apiYoutubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDn7JhTkhkfqWRn3uNaolNmFmyZuB7fKoI&type=video&q=trailer+${nameVideo}`;
     fetch(apiYoutubeUrl)
@@ -173,24 +145,18 @@ function generateYoutubeVideo(VideoIdFromSearch){
       event.target.playVideo();
     }
 }
-
-
 document.addEventListener("DOMContentLoaded", function(event) {
-
-    // const storedTodos = JSON.parse(localStorage.getItem('todos'));
-    // renderTodos();
-
+    
     const movieInfo = moviesList.find(item => item.id === movieId);
     const movieTitle = movieInfo.title;
     const searchFilter = movieTitle.replace(/ /g, '+');
-
     backButton.addEventListener('click', function(){
         location.href = './Movie_Cards.html';
     });
-
     titleDiv.textContent = movieTitle;
     synopsisDiv.innerHTML = movieInfo.overview;
-    ratingDiv.innerHTML = `Rating : ${movieInfo.vote_average}` ;
-
-    // setYoutubeVideo(searchFilter);
+    ratingDiv_1.innerHTML = `Rating : ${movieInfo.vote_average}` ;
+    
+    renderTodos();
+    setYoutubeVideo(searchFilter);
 });

@@ -42,10 +42,10 @@ function generateMovieCards(movieInfo){
     getRandomWow(magicSound);
   
     const cellContainer = document.createElement('div');
-    cellContainer.setAttribute('class', 'cell is-clickable');
+    cellContainer.setAttribute('class', 'cell is-clickable ');
   
     const cardContainer = document.createElement('div');
-    cardContainer.setAttribute('class', 'card m-3');
+    cardContainer.setAttribute('class', 'card m-3 ');
     
   
     const cardContentContainer = document.createElement('div');
@@ -81,7 +81,7 @@ function generateMovieCards(movieInfo){
   
         let genreName = genresDict.find(item => item.id === movieGenreIds[gnr_i]).name;
         let textFooterContainer = document.createElement('p');
-        textFooterContainer.setAttribute('class', 'subtitle button p-2 m-3');   
+        textFooterContainer.setAttribute('class', 'subtitle button p-2 m-3 has-background-primary-soft');   
         textFooterContainer.innerHTML = genreName;
         cardContentContainer.appendChild(textFooterContainer);
     }
