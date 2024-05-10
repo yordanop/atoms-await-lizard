@@ -2,7 +2,6 @@ const backButton = document.querySelector('#return-button');
 const titleDiv = document.querySelector('#title-info');
 const synopsisDiv = document.querySelector('#movie-synopsis');
 const ratingDiv = document.querySelector('#rating');
-
 const movieId = parseInt(JSON.parse(localStorage.getItem('recentClickId')));
 const moviesList = JSON.parse(localStorage.getItem('moviesGenreList'));
 
@@ -12,6 +11,7 @@ let button = document.getElementById('button');
 let modal = document.getElementById('page-modal');
 let close = document.getElementsByClassName('modal-close')[0];
 let reviewHistory = JSON.parse(localStorage.getItem("reviews")) || [];
+console.log(reviewHistory);
 let submitButton = document.getElementById('submitButton');
 let cancelButton = document.getElementById('cancelButton');
 
@@ -35,6 +35,8 @@ submitButton.onclick = function () {
     let rating = document.querySelector("#rating").value;
     let entryTitle = document.querySelector("#entryTitle").value;
     let reviewEntry = document.querySelector("#reviewEntry").value;
+
+
     let movieCode = parseInt(JSON.parse(localStorage.getItem("recentclickId")));
     reviewHistory.push({ 
         username:username,
@@ -46,20 +48,40 @@ submitButton.onclick = function () {
     console.log();
     localStorage.setItem("reviews",JSON.stringify(reviewHistory));
 
-    document.querySelector("#username").value = '';
-    document.querySelector("#rating").value = '';
-    document.querySelector("#entryTitle").value = '';
-    document.querySelector("#reviewEntry").value = '';
-    modal.style.display = 'none';
-}
 
-cancelButton.onclick = function () {
-    modal.style.display = 'none';
-}
+    if (username === '' || rating === '' || entryTitle === '' || reviewEntry === '' || movieCode === '') {
+      //alert the user if he/she doesn't fill out all the required fields
+      alert("Please complete all the required fields.");
+      return;
+    }
 
-//defining the constants needed for the local storage
-// const todoList = document.querySelector('#todo-list');
-// console.log(todoList);
+    else {
+      // parseInt(JSON.parse(localStorage.getItem("recentclickId")));
+          reviewHistory.push({ 
+            username:username,
+            rating:rating,
+            entryTitle:entryTitle,
+            reviewEntry:reviewEntry,
+            movieCode:movieCode
+          }) 
+          console.log();
+          localStorage.setItem("reviews",JSON.stringify(reviewHistory));
+      
+          document.querySelector("#username").value = '';
+          document.querySelector("#rating").value = '';
+          document.querySelector("#entryTitle").value = '';
+          document.querySelector("#reviewEntry").value = '';
+          modal.style.display = 'none';
+    }
+  
+    cancelButton.onclick = function () {
+    modal.style.display = 'none';
+    }  
+
+  }
+
+
+const movieReviews = document.querySelector('.movieReviews');
 
 //using parse to convert strings to objects
 const todos = JSON.parse(localStorage.getItem("todos")) || [];
@@ -155,8 +177,8 @@ function generateYoutubeVideo(VideoIdFromSearch){
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
-    const storedTodos = JSON.parse(localStorage.getItem('todos'));
-    renderTodos();
+    // const storedTodos = JSON.parse(localStorage.getItem('todos'));
+    // renderTodos();
 
     const movieInfo = moviesList.find(item => item.id === movieId);
     const movieTitle = movieInfo.title;

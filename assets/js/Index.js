@@ -11,7 +11,9 @@ const tmdbOptions = {
 const btnContainer = document.querySelector('#button-container');
 let allGenres = JSON.parse(localStorage.getItem('genresList'));
 
+
 // This function generates a list of genres pulled from the API themoviedb 
+
 function getGenresList(){
     const apiUrl = `https://api.themoviedb.org/3/genre/movie/list`;
     return fetch(apiUrl, tmdbOptions)
@@ -49,9 +51,10 @@ function getAndSaveGenreMoviesList(genreID){
       alert('Unable to connect TMDB');
     });
 }
-  
+
 
 // This fuction creates a button for every genre pulled from the API. Also, it gives the buttons a random color each time the page reloads 
+
 function createButton(buttonID, buttonName){
     const newButton = document.createElement('button');
     const bulmaStyles = ['is-link', 'is-success', 'is-warning', 'is-danger']
