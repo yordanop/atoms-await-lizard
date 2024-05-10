@@ -70,8 +70,6 @@ function renderTodos() {
   const reviews = JSON.parse(localStorage.getItem('currentMovieReviews'));
   for (let review_i of reviews) {
     const reviewContainer = document.createElement('div');
-    const headerContainer = document.createElement('div');
-    const userContainer = document.createElement('div');
     const titleReview = document.createElement('h3');
     const reviewContentContainer = document.createElement('div');
     const ratingReview = document.createElement('p');
@@ -80,14 +78,14 @@ function renderTodos() {
     reviewContainer.setAttribute('class', 'card is-flex is-flex-direction-column review-container-entry m-3 has-background-primary-soft p-3');
     reviewContentContainer.setAttribute('class', 'card-content ');
 
-    titleReview.setAttribute('class', 'title is-4');
+    titleReview.setAttribute('class', 'title is-4 mx-4');
     titleReview.textContent = `${review_i.entryTitle} - by ${review_i.username} `;
 
 
-    ratingReview.setAttribute('class', 'content');
+    ratingReview.setAttribute('class', 'content mx-5');
     ratingReview.textContent = review_i.rating;
 
-    contentReview.setAttribute('class', 'content');
+    contentReview.setAttribute('class', 'content mx-4');
     contentReview.textContent = review_i.reviewEntry;
 
     reviewContainer.appendChild(titleReview);
@@ -148,7 +146,6 @@ function generateYoutubeVideo(VideoIdFromSearch){
     }
 }
 document.addEventListener("DOMContentLoaded", function(event) {
-    const storedTodos = JSON.parse(localStorage.getItem('todos'));
     
     const movieInfo = moviesList.find(item => item.id === movieId);
     const movieTitle = movieInfo.title;
