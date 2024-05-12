@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.0/css/bulma.css">
     <link rel="stylesheet" href="./assets/css/Movie__Trailer_Info.css">
-    <title>Document</title>
+    <title>Movie Info</title>
 </head>
 <body>
     <button id="return-button" class="button is-warning px-4 m-5">
         <span>Back</span>
       </button>
 
+    <!--Movie details, including title, synopsis, trailer and rating-->
     <div class="columns is-centered">
         <div class="card m-5 column is-three-quarters p-1">
 
@@ -42,6 +44,7 @@
                             </div>
                             <button class="button is-warning is-rounded" id="button"> Enter your review </button>
 
+                            <!-- Modal to allow users to enter a review of their own-->
                             <div class="modal" id="page-modal">
                                 <div class="modal-background">
                                     <div class="modal-content">
@@ -107,11 +110,11 @@
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer has-background-primary-soft">
 
-        <div class="content has-text-centered">
-            <h5>Made with ❤️️ by Les Lumières</h5>
-            <h5> &copy; 2024 Atoms Await Lizard Studio </h5>
+        <div class="content has-text-centered pt-6">
+            <h4>Made with ❤️️ by Les Lumières</h4>
+            <h4> &copy; 2024 Atoms Await Lizard Studio </h4>
         </div>
         
     </footer>

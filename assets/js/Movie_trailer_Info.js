@@ -36,7 +36,7 @@ submitButton.onclick = function () {
       
       reviewHistory.push({
           username:nameUser,
-          rating: ratingUser,
+          rating:ratingUser,
           entryTitle:entryTitleUser,
           reviewEntry:reviewEntryUser,
           movieCode:movieCodeUser
@@ -54,15 +54,17 @@ submitButton.onclick = function () {
 cancelButton.onclick = function () {
     modal.style.display = 'none';
 }
+
 function getSpecificReviews(movieReviewsAll, specificId){
-  const specificRevies = [];
+  const specificReviews = [];
   for(let movie_i of movieReviewsAll){
     if (movie_i.movieCode === specificId){
-      specificRevies.push(movie_i);
+      specificReviews.push(movie_i);
     }
   };
-  localStorage.setItem('currentMovieReviews', JSON.stringify(specificRevies));
+  localStorage.setItem('currentMovieReviews', JSON.stringify(specificReviews));
 }
+
 //append new elements to the array, considering user inputs
 function renderTodos() {
   deleteallReviews();
@@ -81,7 +83,6 @@ function renderTodos() {
     titleReview.setAttribute('class', 'title is-4 mx-4');
     titleReview.textContent = `${review_i.entryTitle} - by ${review_i.username} `;
 
-
     ratingReview.setAttribute('class', 'content mx-5');
     ratingReview.textContent = review_i.rating;
 
@@ -89,7 +90,6 @@ function renderTodos() {
     contentReview.textContent = review_i.reviewEntry;
 
     reviewContainer.appendChild(titleReview);
-
     reviewContainer.appendChild(ratingReview);
     reviewContainer.appendChild(contentReview);
     containerReviews.appendChild(reviewContainer);
@@ -148,6 +148,7 @@ function generateYoutubeVideo(VideoIdFromSearch){
 document.addEventListener("DOMContentLoaded", function(event) {
     
     const movieInfo = moviesList.find(item => item.id === movieId);
+    console.log(movieId);
     const movieTitle = movieInfo.title;
     const searchFilter = movieTitle.replace(/ /g, '+');
     backButton.addEventListener('click', function(){
@@ -155,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
     titleDiv.textContent = movieTitle;
     synopsisDiv.innerHTML = movieInfo.overview;
-    ratingDiv_1.innerHTML = `Rating : ${movieInfo.vote_average}` ;
+    ratingDiv_1.innerHTML = `Rating : ${movieInfo.vote_average /2}` ;
     
     renderTodos();
     setYoutubeVideo(searchFilter);
