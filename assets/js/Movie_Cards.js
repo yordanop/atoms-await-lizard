@@ -30,7 +30,7 @@ function getRandomWow(wowContainer){
 }
 
 
-// fucntion that creates thae cards with movie info that receives as an argument
+// function that creates thae cards with movie info that receives as an argument
 function generateMovieCards(movieInfo){
 
     const genresDict = JSON.parse(localStorage.getItem('genresList'));
@@ -42,11 +42,10 @@ function generateMovieCards(movieInfo){
     getRandomWow(magicSound);
   
     const cellContainer = document.createElement('div');
-    cellContainer.setAttribute('class', 'cell is-clickable ');
+    cellContainer.setAttribute('class', 'cell is-clickable');
   
     const cardContainer = document.createElement('div');
-    cardContainer.setAttribute('class', 'card m-3 ');
-    
+    cardContainer.setAttribute('class', 'card m-3');
   
     const cardContentContainer = document.createElement('div');
     cardContentContainer.setAttribute('class', 'card-content moviePoster p-0');

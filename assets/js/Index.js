@@ -57,7 +57,7 @@ function getAndSaveGenreMoviesList(genreID){
 
 function createButton(buttonID, buttonName){
     const newButton = document.createElement('button');
-    const bulmaStyles = ['has-background-primary-soft', 'is-link', 'is-warning', 'is-danger']
+    const bulmaStyles = ['is-link', 'is-warning', 'is-danger', 'is-success']
     const mathRandom = Math.floor(Math.random() * bulmaStyles.length);
     console.log('color random', mathRandom);    
     
